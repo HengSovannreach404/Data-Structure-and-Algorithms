@@ -57,6 +57,15 @@ class DLL {
         }
         cout << "NULL" <<endl;
     }
+    void displayReverse() {
+        node *t = tail;
+        cout << "Display Reverse :" ;
+        while (t != nullptr) {
+            cout << t->url << " -> ";
+            t = t->previous;
+        }
+        cout << "NULL" <<endl;
+    }
     
 
 };
@@ -68,6 +77,7 @@ int main () {
     s1.insertBegin("B");
     s1.insertEND("K");  
     s1.displayforward();
+    s1.displayReverse();
     return 0;
 
 }
