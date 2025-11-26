@@ -3,11 +3,11 @@
 using namespace std;
 class node {
     public:
-    string data;
+    string name;
     node *left;
     node *right;
-    node (string Newdata ){
-        data = Newdata;
+    node (string s){
+        name = s;
         left = nullptr;
         right = nullptr;
      }
@@ -18,11 +18,42 @@ class Tree {
     Tree () {
         root = nullptr;
     }
-    node *insert(node *root , string data){
+    node *insert(node *root , string name){
         if(root==nullptr){
-            return new node(data);
-        } else if(data < root->data){
-            root->left = insert(root->left,data);
+            return new node(name);
+        } else if(name < root->name){
+            root->left = insert(root->left, name);
+        } else if (name > root->name) {
+            root->right = insert(root->right, name);
         }
+        return root;
+    }
+    void add (string s) {
+        root = insert(root, s);
+    }
+    void inorder(node* root){
+        if(root != nullptr){
+            inorder(root->left);
+            cout<< root->name << "  " ;
+            inorder(root->right);
+        }
+        
+    }
+    void showStudents() {
+        cout << "Students In A-Z order :";
+        inorder(root);
     }
 };
+int main() {
+    Tree student;
+
+    // Testing BST with student names
+    student.add("Reach");
+    student.add("Chesda");
+    student.add("Vichka");
+    student.add("Aob");
+
+    student.showStudents();
+
+    return 0;
+}
